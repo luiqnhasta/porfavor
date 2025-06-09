@@ -29,7 +29,8 @@ const Menu = {
             menuItemsEl.innerHTML = `
                 <div class="menu-empty">
                     <h3>Erro ao carregar produtos</h3>
-                    <p>Tente novamente mais tarde.</p>
+                    <p>Verifique se o backend está rodando. ${error.message}</p>
+                    <button class="btn btn-primary" onclick="Menu.loadMenuItems()">Tentar Novamente</button>
                 </div>
             `;
         }

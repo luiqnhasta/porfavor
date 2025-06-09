@@ -1,6 +1,6 @@
 // API Service Module
 const API = {
-    baseURL: 'http://localhost/backend/api', // Altere para sua URL do backend
+    baseURL: 'http://localhost:8080/api', // URL do backend PHP
     
     // Helper para fazer requisições
     async request(endpoint, options = {}) {
@@ -15,6 +15,13 @@ const API = {
 
         try {
             const response = await fetch(url, config);
+            
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error(`Expected JSON response but got ${contentType}. Check if backend is running.`);
+            }
+            
             const data = await response.json();
             
             if (!response.ok) {
