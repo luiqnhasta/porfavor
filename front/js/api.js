@@ -1,6 +1,6 @@
 // API Service Module
 const API = {
-    baseURL: 'http://localhost:8080/api', // URL do backend PHP
+    baseURL: 'http://localhost/backend/api', // URL para XAMPP
     
     // Helper para fazer requisições
     async request(endpoint, options = {}) {
@@ -19,7 +19,7 @@ const API = {
             // Check if response is JSON
             const contentType = response.headers.get('content-type');
             if (!contentType || !contentType.includes('application/json')) {
-                throw new Error(`Expected JSON response but got ${contentType}. Check if backend is running.`);
+                throw new Error(`Backend não está respondendo JSON. Verifique se o Apache está rodando e se o .htaccess está configurado.`);
             }
             
             const data = await response.json();
